@@ -36,7 +36,7 @@ func main() {
 
   http.HandleFunc("/fymi", Handler)
   http.HandleFunc("/fymi/help", HelpHandler)
-
+  http.HandleFunc("/fymi/id", IdHandler)
   err := http.ListenAndServe(getPort(), nil)
   if err != nil {
       log.Fatal("ListenAndServe Error: ", err)
