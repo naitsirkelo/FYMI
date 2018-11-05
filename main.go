@@ -15,7 +15,7 @@ type Movie struct {
   Runtime  string `json="Runtime"`
   Director string `json="Director"`
   Released string `json="Released"`
-  // Poster   string `json="Poster"`
+  Poster   string `json="Poster"`
 }
 
 // - - - - - - - - - -  Port  - - - - - - - - - - - - - -

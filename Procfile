@@ -1,1 +1,1 @@
-web: goproject-okmh
+web: goproject
