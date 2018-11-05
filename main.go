@@ -30,17 +30,12 @@ func getPort() string {
  		return (":" + port)
 }
 
-func handleTest(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "TEST!")
-}
-
 // - - - - - - - - - -  Main  - - - - - - - - - - - - -
 
 func main() {
 
   http.HandleFunc("/fymi", Handler)
-  // http.HandleFunc("/fymi/help", HelpHandler)
-  http.HandleFunc("/fymi/help", handleTest)
+  http.HandleFunc("/fymi/help", HelpHandler)
 
   err := http.ListenAndServe(getPort(), nil)
   if err != nil {
