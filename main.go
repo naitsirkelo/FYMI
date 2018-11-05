@@ -34,8 +34,8 @@ func getPort() string {
 
 func main() {
 
-  http.HandleFunc("/", Handler)
-  http.HandleFunc("/fymihelp", HelpHandler)
+  http.HandleFunc("/fymi", Handler)
+  http.HandleFunc("/fymi/help", HelpHandler)
 
   err := http.ListenAndServe(getPort(), nil)
   if err != nil {
