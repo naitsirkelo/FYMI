@@ -30,6 +30,7 @@ func main() {
   fmt.Println("Hello World!")
 
   http.HandleFunc("/", handler)
+  SendPayload("this is a test")
 
   err := http.ListenAndServe(GetPort(), nil)
   if err != nil {
