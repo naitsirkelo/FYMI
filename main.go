@@ -7,7 +7,11 @@ import(
   "net/http"
 )
 
-// - - - - - - - - - -
+func handler(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello Internet!")
+}
+
+// - - - - - - - - - -  Port  - - - - - - - - - - - - - -
 
 func GetPort() string {
 	 	var port = os.Getenv("PORT")
@@ -17,11 +21,6 @@ func GetPort() string {
 			fmt.Println("No PORT variable detected, defaulting to " + port)
  		}
  		return (":" + port)
-}
-
-
-func handler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello Internet!")
 }
 
 // - - - - - - - - - -  Main  - - - - - - - - - - - - -
