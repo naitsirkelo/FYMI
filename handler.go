@@ -5,10 +5,17 @@ import(
 	"net/http"
 )
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func BotHandler(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, "Hello there, friend.")
+}
+
+func RootHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello Internet!")
 }
 
 func HelpHandler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Help wanted!")
+		fmt.Fprintln(w, "Hello! I am your Movie Info finding bot!\n")
+		fmt.Fprintln(w, "\tAvailable commands:\n")
+		fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>     			Example: 'tt1790809'\n")
+		fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>    Example: 'The Godfather'\n")
 }
