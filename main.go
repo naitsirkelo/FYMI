@@ -7,10 +7,6 @@ import(
   "net/http"
 )
 
-const (
-  OMDBKEY   = "9ef35ea6"
-)
-
 func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello Internet!")
 }

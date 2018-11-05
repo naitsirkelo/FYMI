@@ -7,6 +7,7 @@ import(
 )
 
 var WebhookUrl string = "https://hooks.slack.com/services/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"
+var OMDbkey 	 string = "9ef35ea6"
 
 func SendPayload(payload string) error {
 	fmt.Println(payload)
