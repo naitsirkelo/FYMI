@@ -24,7 +24,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello Internet!")
 }
 
-// - - - - - - - - - -  main  - - - - - - - - - - - - -
+// - - - - - - - - - -  Main  - - - - - - - - - - - - -
 
 func main() {
   fmt.Println("Hello World!")
