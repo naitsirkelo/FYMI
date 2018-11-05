@@ -7,13 +7,20 @@ import(
   "net/http"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello Internet!")
+type Movie struct {
+  Title    string `json="Title"`
+  Genre    string `json="Genre"`
+  Language string `json="Language"`
+  Country  string `json="Country"`
+  Runtime  string `json="Runtime"`
+  Director string `json="Director"`
+  Released string `json="Released"`
+  // Poster   string `json="Poster"`
 }
 
 // - - - - - - - - - -  Port  - - - - - - - - - - - - - -
 
-func GetPort() string {
+func getPort() string {
 	 	var port = os.Getenv("PORT")
  				// Port sets to :8080 as a default
  		if (port == "") {
@@ -26,12 +33,11 @@ func GetPort() string {
 // - - - - - - - - - -  Main  - - - - - - - - - - - - -
 
 func main() {
-  fmt.Println("Hello World!")
+  http.HandleFunc("/", Handler)
+  http.HandleFunc("/fymihelp", HelpHandler)
 
-  http.HandleFunc("/", handler)
-  SendPayload("this is a test")
 
-  err := http.ListenAndServe(GetPort(), nil)
+  err := http.ListenAndServe(getPort(), nil)
   if err != nil {
       log.Fatal("ListenAndServe Error: ", err)
   }
