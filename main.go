@@ -35,8 +35,8 @@ func GetPort() string {
 func main() {
   fmt.Println("Hello World!")
 
-  http.HandleFunc("/", handler)
-  http.HandleFunc("/fymihelp", helpHandler)
+  http.HandleFunc("/", Handler)
+  http.HandleFunc("/fymihelp", HelpHandler)
 
   err := http.ListenAndServe(GetPort(), nil)
   if err != nil {
