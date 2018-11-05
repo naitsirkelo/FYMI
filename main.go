@@ -20,7 +20,7 @@ type Movie struct {
 
 // - - - - - - - - - -  Port  - - - - - - - - - - - - - -
 
-func GetPort() string {
+func getPort() string {
 	 	var port = os.Getenv("PORT")
  				// Port sets to :8080 as a default
  		if (port == "") {
@@ -33,12 +33,11 @@ func GetPort() string {
 // - - - - - - - - - -  Main  - - - - - - - - - - - - -
 
 func main() {
-  fmt.Println("Hello World!")
 
   http.HandleFunc("/", Handler)
   http.HandleFunc("/fymihelp", HelpHandler)
 
-  err := http.ListenAndServe(GetPort(), nil)
+  err := http.ListenAndServe(getPort(), nil)
   if err != nil {
       log.Fatal("ListenAndServe Error: ", err)
   }
