@@ -7,8 +7,15 @@ import(
   "net/http"
 )
 
-func handler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello Internet!")
+type Movie struct {
+  Title    string `json="Title"`
+  Genre    string `json="Genre"`
+  Language string `json="Language"`
+  Country  string `json="Country"`
+  Runtime  string `json="Runtime"`
+  Director string `json="Director"`
+  Released string `json="Released"`
+  // Poster   string `json="Poster"`
 }
 
 // - - - - - - - - - -  Port  - - - - - - - - - - - - - -
@@ -29,6 +36,7 @@ func main() {
   fmt.Println("Hello World!")
 
   http.HandleFunc("/", handler)
+  http.HandleFunc("/fymihelp", helpHandler)
 
   err := http.ListenAndServe(GetPort(), nil)
   if err != nil {

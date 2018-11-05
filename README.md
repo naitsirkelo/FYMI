@@ -1,5 +1,6 @@
-# IMT2681 Project (Assignment 3)
-## Marius Håkonsen - Ole K Larsen
+# Find Your Movie Info
+## IMT2681 Project (Assignment 3)
+## Marius Håkonsen & Ole K Larsen
 
 ![Build Status](https://img.shields.io/badge/build-in--progress-x.svg)
 
