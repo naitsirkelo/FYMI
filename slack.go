@@ -2,17 +2,14 @@ package main
 
 import(
 	"bytes"
-	"fmt"
+	"encoding/json"
 	"net/http"
 )
 
-var WebhookUrl string = "https://hooks.slack.com/services/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"
-var OMDbkey 	 string = "9ef35ea6"
-
 func SendPayload(payload string) error {
-	fmt.Println(payload)
-	var jsonStr = []byte(`{"text": payload}`)
-	req, err := http.NewRequest("POST", WebhookUrl, bytes.NewBuffer(jsonStr))
+	val := map[string]string{"text": payload}
+	jsonStr, err := json.Marshal(val)
+	req, err := http.NewRequest("POST", SLACKURL, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 
 	client := &http.Client{}
