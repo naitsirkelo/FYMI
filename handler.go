@@ -27,6 +27,7 @@ type Payload struct {
 func IdHandler(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
+		fmt.Fprintln(w, err.Error())
 		return
 	}
 	var payload Payload
@@ -35,6 +36,8 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	err = decoder.Decode(&payload, r.PostForm)
 	if err != nil {
 		fmt.Fprintln(w, "Something went wrong")
+		fmt.Fprintln(w, err.Error())
+		fmt.Fprintln(w, ioutil.ReadAll(r))
 		return
 	}
 	fmt.Fprintln(w, payload.Text)
