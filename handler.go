@@ -40,7 +40,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintln(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released) //Print info to slack
+	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released) //Print info to slack
 }
 
 func BotHandler(w http.ResponseWriter, r *http.Request) {
