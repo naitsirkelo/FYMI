@@ -34,6 +34,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 
 	err = decoder.Decode(&payload, r.PostForm)
 	if err != nil {
+		fmt.Fprintln(w, "Something went wrong")
 		return
 	}
 	fmt.Fprintln(w, payload.Text)
