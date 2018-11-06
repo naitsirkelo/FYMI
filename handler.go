@@ -4,7 +4,7 @@ import(
 	"fmt"
 	"net/http"
 //	"encoding/json"
-	"goproject/schema"
+	"github.com/gorilla/schema"
 )
 
 
