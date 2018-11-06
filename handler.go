@@ -24,7 +24,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	fmt.Fprintln(w, id.Text)
+	fmt.Fprintln(w, payload.Text)
 }
 func BotHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello there, friend.")
