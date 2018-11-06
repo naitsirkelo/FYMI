@@ -1,6 +1,7 @@
 package main
 
 import(
+	"io/ioutil"
 	"fmt"
 	"net/http"
 //	"encoding/json"
@@ -37,7 +38,8 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Fprintln(w, "Something went wrong")
 		fmt.Fprintln(w, err.Error())
-		fmt.Fprintln(w, ioutil.ReadAll(r))
+		b, _ := ioutil.ReadAll(r.Body)
+		fmt.Fprintln(w, b)
 		return
 	}
 	fmt.Fprintln(w, payload.Text)
