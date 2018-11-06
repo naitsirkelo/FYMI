@@ -7,17 +7,6 @@ import(
   "net/http"
 )
 
-type Movie struct {
-  Title    string `json="Title"`
-  Genre    string `json="Genre"`
-  Language string `json="Language"`
-  Country  string `json="Country"`
-  Runtime  string `json="Runtime"`
-  Director string `json="Director"`
-  Released string `json="Released"`
-  Poster   string `json="Poster"`
-}
-
 // - - - - - - - - - -  Port  - - - - - - - - - - - - - -
 
 func getPort() string {
