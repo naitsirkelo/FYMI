@@ -4,7 +4,8 @@
 	"GodepVersion": "v80",
 	"Deps": [
 		{
-			"ImportPath": "github.com/gorilla/schema"
+			"ImportPath": "github.com/gorilla/schema",
+			"Rev": ""
 		}
 	]
 }
