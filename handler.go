@@ -18,16 +18,15 @@ type Movie struct {
 }
 
 func IdHandler(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
+	err := r.ParseForm()	//Parse the form
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	id := r.Form["text"][0]
-	omdbUrl := MakeUrlId(id)
-	fmt.Fprintln(w, id, "  Url: ", omdbUrl)
+	id := r.Form["text"][0]		//Gets the id from slash command
+	omdbUrl := MakeUrlId(id)	//Creates the url
 
-	resp, err := http.Get(omdbUrl)
+	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
 		return
@@ -35,15 +34,13 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	defer resp.Body.Close()
 
 	var movie Movie
-	err = json.NewDecoder(resp.Body).Decode(&movie)
+	err = json.NewDecoder(resp.Body).Decode(&movie)	//Decode json from omdb url
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	fmt.Fprintln(w, movie.Title)
 
-//	fmt.Fprintf(w, "%v as %T len %v\n", r.Form["text"], r.Form["text"], len(r.Form["text"]))
-//	SendPayload(payload.Text)
+	fmt.Fprintln(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released) //Print info to slack
 }
 
 func BotHandler(w http.ResponseWriter, r *http.Request) {
