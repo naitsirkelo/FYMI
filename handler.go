@@ -17,6 +17,31 @@ type Movie struct {
   Poster   string `json="Poster"`
 }
 
+func TitleHandler(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+		return
+	}
+	title := r.Form["text"][0]
+	omdbUrl := MakeUrlTitle(title)
+
+	resp, err := http.Get(omdbUrl)
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+		return
+	}
+	defer resp.Body.Close()
+
+	var movie Movie
+	err = json.NewDecoder(resp.Body).Decode(&movie)
+	if err != nil {
+		fmt.Println(w, err.Error())
+		return
+	}
+	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released)
+}
+
 func IdHandler(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()	//Parse the form
 	if err != nil {
