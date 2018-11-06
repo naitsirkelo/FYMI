@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "/SiHYonMCQZb95XIV+hdb3UYOS8=",
+			"path": "github.com/gorilla/schema",
+			"revision": "da8e73546beca346d03fd40d5b146e06e6b98b7a",
+			"revisionTime": "2018-10-17T15:13:37Z"
+		}
+	],
+	"rootPath": "goproject"
+}
