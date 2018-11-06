@@ -36,8 +36,8 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	SendPayload(payload.Text)
-//	fmt.Fprintln(w, payload.Text)
+	fmt.Fprintln(w, payload.Text)
+//	SendPayload(payload.Text)
 }
 func BotHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello there, friend.")
