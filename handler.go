@@ -5,7 +5,7 @@ import(
 	"fmt"
 	"net/http"
 //	"encoding/json"
-	"github.com/gorilla/schema"
+//	"github.com/gorilla/schema"
 )
 
 
@@ -31,7 +31,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	var payload Payload
+/*	var payload Payload
 	decoder := schema.NewDecoder()
 
 	err = decoder.Decode(&payload, r.PostForm)
@@ -39,10 +39,11 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Something went wrong")
 		fmt.Fprintln(w, err.Error())
 		//b, _ := ioutil.ReadAll(r.Body)
-		fmt.Fprintln(w, r.PostForm)
+		fmt.Fprintln(w, r.Form["text"])
 		return
-	}
-	fmt.Fprintln(w, payload.Text)
+	}*/
+
+	fmt.Fprintln(w, r.Form["text"])
 //	SendPayload(payload.Text)
 }
 func BotHandler(w http.ResponseWriter, r *http.Request) {
