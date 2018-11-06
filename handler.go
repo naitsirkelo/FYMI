@@ -43,7 +43,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}*/
 
-	fmt.Fprintln(w, r.Form["text"])
+	fmt.Fprintf(w, "%v as %t\n", r.Form["text"], r.Form["text"])
 //	SendPayload(payload.Text)
 }
 func BotHandler(w http.ResponseWriter, r *http.Request) {
