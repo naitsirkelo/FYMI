@@ -9,7 +9,7 @@ import(
 
 
 type Payload struct {
-	Text string `schema:"text"`
+	Text string `schema:"&text"`
 }
 
 func IdHandler(w http.ResponseWriter, r *http.Request) {
@@ -17,10 +17,10 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	id := new(Payload)
+	var payload Payload
 	decoder := schema.NewDecoder()
 
-	err = decoder.Decode(id, r.Form)
+	err = decoder.Decode(&payload, r.PostForm)
 	if err != nil {
 		return
 	}
