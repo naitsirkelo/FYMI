@@ -5,7 +5,8 @@
 	"Deps": [
 		{
 			"ImportPath": "github.com/gorilla/schema",
-			"Rev": ""
+			"Comment": "v1.0.2-3-gda8e735",
+			"Rev": "da8e73546beca346d03fd40d5b146e06e6b98b7a"
 		}
 	]
 }
