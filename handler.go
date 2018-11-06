@@ -13,12 +13,12 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	id := r.Form["text"][0]
-	fmt.Fprintf(w, id)
 	omdbUrl := MakeUrlId(id)
-	fmt.Fprintf(w, "Url: ", omdbUrl)
+	fmt.Fprintln(w, id, "  Url: ", omdbUrl)
 //	fmt.Fprintf(w, "%v as %T len %v\n", r.Form["text"], r.Form["text"], len(r.Form["text"]))
 //	SendPayload(payload.Text)
 }
+
 func BotHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello there, friend.")
 }
