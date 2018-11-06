@@ -2,5 +2,9 @@
 	"ImportPath": "goproject",
 	"GoVersion": "go1.11",
 	"GodepVersion": "v80",
-	"Deps": []
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/schema"
+		}
+	]
 }
