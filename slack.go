@@ -7,7 +7,9 @@ import(
 )
 
 func SendPayload(payload string, imageurl string) error {
-	attachment := map[string]string{"image_url": imageurl}
+	var attachment [1]interface{}
+	img := map[string]string{"image_url": imageurl}
+	attachment[0] = img
 	val := map[string]interface{}{"text": payload, "attachments": attachment}
 	jsonStr, err := json.Marshal(val)
 	req, err := http.NewRequest("POST", SLACKURL, bytes.NewBuffer(jsonStr))
