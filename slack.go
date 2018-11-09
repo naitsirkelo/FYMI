@@ -14,7 +14,7 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 	text := "Title: " + movie.Title + "\nGenre: " + movie.Genre + "\nReleased: " + movie.Released +
 		"\nDirector: " + movie.Director + "\nRuntime: " + movie.Runtime
 	val := map[string]interface{}{"text": text, "attachments": attachment}
-
+	w.Header().Set("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(val)
 	if err != nil {
 		return err
