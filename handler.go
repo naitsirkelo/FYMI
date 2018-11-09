@@ -20,7 +20,7 @@ type Movie struct {
   Poster   string `json="Poster"`
   Response string `json="Response"`
   Error    string `json="Error"`
-  Rating   string `json="imdbRating"`
+  ImdbRating   string `json="imdbRating"`
   Type	   string `json="Type"`
   TotalSeasons string `json="totalSeasons"`
 }

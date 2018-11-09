@@ -12,7 +12,7 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 	img := map[string]string{"fallback": "Poster", "image_url": movie.Poster} //Map for attachment info
 	attachment[0] = img	//Add info to attachment array
 	text := "Title: " + movie.Title + "\nGenre: " + movie.Genre + "\nReleased: " + movie.Released +  //Create the slack response text
-		"\nDirector: " + movie.Director + "\nImdb Rating: " + movie.Rating +
+		"\nDirector: " + movie.Director + "\nImdb Rating: " + movie.ImdbRating +
 		"\nType: " + movie.Type
 	if movie.Type == "series" {
 		text = text + "\nTotal seasons: " + movie.TotalSeasons
