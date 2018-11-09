@@ -5,13 +5,15 @@ import (
 )
 
 func MakeUrlId(id string) string {
-	url := OMDB + "apikey=" + APIKEY + "&i=" + id
+	replacer := strings.NewReplacer(" ", "")	//Necessary to remove spaces for correct error handling
+	id = replacer.Replace(id)
+	url := OMDB + "apikey=" + APIKEY + "&i=" + id //Builds the url
 	return url
 }
 
 func MakeUrlTitle(title string) string {
-	replacer := strings.NewReplacer(" ", "_")
+	replacer := strings.NewReplacer(" ", "_") //Replaces spaces with underscore in title
 	title = replacer.Replace(title)
-	url := OMDB + "apikey=" + APIKEY + "&t=" + title
+	url := OMDB + "apikey=" + APIKEY + "&t=" + title //Builds the url
 	return url
 }
