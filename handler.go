@@ -51,45 +51,35 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	SendPayload("This is a test", movie.Poster)
-//	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
-//							movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
-
+	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
+							movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
 }
 
-// func PosterHandler(w http.ResponseWriter, r *http.Request) {
-// 	err := r.ParseForm()	//Parse the form
-// 	if err != nil {
-// 		fmt.Fprintln(w, err.Error())
-// 		return
-// 	}
-// 	title := r.Form["text"][0]			//Gets the id from slash command
-// 	omdbUrl := MakeUrlTitle(title) 	//Creates the url from the movie title
-//
-// 	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
-// 	if err != nil {
-// 		fmt.Fprintln(w, err.Error())
-// 		return
-// 	}
-// 	defer resp.Body.Close()
-//
-// 	var movie Movie
-// 	err = json.NewDecoder(resp.Body).Decode(&movie)	//Decode json from omdb url
-// 	if err != nil {
-// 		fmt.Fprintln(w, err.Error())
-// 		return
-// 	}
-//
-// 	client := unfurl.NewClient()
-//  	res, err := client.Process(movie.Poster)
-//  	if err != nil {
-// 		fmt.Fprintln(w, err.Error())
-// 		return
-//  	}
-//  	fmt.Fprintln(w, res)
-// 
-// }
+func PosterHandler(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()	//Parse the form
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+		return
+	}
+	title := r.Form["text"][0]			//Gets the id from slash command
+	omdbUrl := MakeUrlTitle(title) 	//Creates the url from the movie title
 
+	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+		return
+	}
+	defer resp.Body.Close()
+
+	var movie Movie
+	err = json.NewDecoder(resp.Body).Decode(&movie)	//Decode json from omdb url
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+		return
+	}
+
+	SendPayload(movie.Title, movie.Poster)
+}
 
 func BotHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello there, friend.")
