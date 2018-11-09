@@ -2,6 +2,7 @@ package main
 
 import(
 	"fmt"
+	"strings"
 	"net/http"
 	"encoding/json"
 )
@@ -17,39 +18,22 @@ type Movie struct {
   Poster   string `json="Poster"`
 }
 
-func TitleHandler(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
-		return
-	}
-	title := r.Form["text"][0]
-	omdbUrl := MakeUrlTitle(title)
-
-	resp, err := http.Get(omdbUrl)
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
-		return
-	}
-	defer resp.Body.Close()
-
-	var movie Movie
-	err = json.NewDecoder(resp.Body).Decode(&movie)
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
-		return
-	}
-	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released)
-}
-
 func IdHandler(w http.ResponseWriter, r *http.Request) {
+	parts := strings.Split(r.URL.Path, "/")
+
 	err := r.ParseForm()	//Parse the form
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
 	id := r.Form["text"][0]		//Gets the id from slash command
-	omdbUrl := MakeUrlId(id)	//Creates the url
+
+	var omdbUrl string
+	if (parts[1] == "id") {
+		omdbUrl = MakeUrlTitle(id) //Creates the url from the movie title
+	} else {
+		omdbUrl = MakeUrlId(id)		//Creates the url from IMDB ID
+	}
 
 	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
 	if err != nil {
@@ -65,7 +49,8 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released) //Print info to slack
+	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
+							movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
 }
 
 func BotHandler(w http.ResponseWriter, r *http.Request) {
@@ -77,8 +62,7 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HelpHandler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello! I am the FYMI-bot here to Find Your Movie Info for you!")
-		fmt.Fprintln(w, "These are the available commands:")
+		fmt.Fprintln(w, "Hello! I am the FYMI-bot here to Find Your Movie Info for you! These are the available commands:")
 		fmt.Fprintln(w, "\t- /fymihelp			(Show the bot functionalities)")
 		fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>	(Example: 'tt1790809')")
 		fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>	(Example: 'The Godfather')")
