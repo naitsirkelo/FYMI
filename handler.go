@@ -18,6 +18,8 @@ type Movie struct {
   Director string `json="Director"`
   Released string `json="Released"`
   Poster   string `json="Poster"`
+  Response string `json="Response"`
+  Error    string `json="Error"`
 }
 
 func IdHandler(w http.ResponseWriter, r *http.Request) {
@@ -52,9 +54,13 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	err = SendPayload(w, movie) //Send info about movie as response
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
+	if movie.Response == "True" {
+		err = SendPayload(w, movie) //Send info about movie as response
+		if err != nil {
+			fmt.Fprintln(w, err.Error())
+		}
+	} else {
+		fmt.Fprintln(w, movie.Error)
 	}
 	return
 }
