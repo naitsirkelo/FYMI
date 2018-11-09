@@ -33,10 +33,12 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	var omdbUrl string
 	if (parts[2] == "title") {
 		omdbUrl = MakeUrlTitle(id) //Creates the url from the movie title
-	} else {
+	} else if (parts[2] == "id") {
 		omdbUrl = MakeUrlId(id)		//Creates the url from IMDB ID
+	} else {
+		fmt.Fprintln(w, "Invalid Request")
+		return
 	}
-
 	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
@@ -50,40 +52,14 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	SendPayload(w, movie)
-	//fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
-	//						movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
+	err = SendPayload(w, movie) //Send info about movie as response
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+	}
+	return
 }
 
 
-/*
-func PosterHandler(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()	//Parse the form
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
-		return
-	}
-	title := r.Form["text"][0]			//Gets the id from slash command
-	omdbUrl := MakeUrlTitle(title) 	//Creates the url from the movie title
-
-	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
-		return
-	}
-	defer resp.Body.Close()
-
-	var movie Movie
-	err = json.NewDecoder(resp.Body).Decode(&movie)	//Decode json from omdb url
-	if err != nil {
-		fmt.Fprintln(w, err.Error())
-		return
-	}
-
-//	SendPayload(movie.Title, movie.Poster)
-}
-
-*/
 func BotHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello there, friend.")
 }

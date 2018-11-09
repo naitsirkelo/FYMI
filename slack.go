@@ -6,6 +6,7 @@ import(
 	"net/http"
 )
 
+	//Function for sending information about movie as json
 func SendPayload(w http.ResponseWriter, movie Movie) error {
 
 	var attachment [1]interface{}
@@ -19,15 +20,5 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 	if err != nil {
 		return err
 	}
-	/*jsonStr, err := json.Marshal(val)
-	req, err := http.NewRequest("POST", SLACKURL, bytes.NewBuffer(jsonStr))
-	req.Header.Set("Content-Type", "application/json")
-
-	client := &http.Client{}
-	resp, err := client.Do(req)
-	if err != nil {
-		panic(err)
-	}
-	defer resp.Body.Close()*/
 	return nil
 }
