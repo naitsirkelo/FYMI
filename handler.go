@@ -34,7 +34,6 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	id := r.Form["text"][0]			//Gets the movie variable from slack
-
 	var omdbUrl string
 	if (parts[2] == "title") {
 		omdbUrl = MakeUrlTitle(id) //Creates the url from the movie title
@@ -57,7 +56,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	fmt.Fprintf(w, "Type: %T", movie.Rating)
+
 	if movie.Response == "True" {	//Checks if omdb found the movie in imdb
 		err = SendPayload(w, movie) //Send info about movie as response
 		if err != nil {
