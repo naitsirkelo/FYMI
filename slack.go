@@ -1,19 +1,25 @@
 package main
 
 import(
-	"bytes"
+	//"bytes"
 	"encoding/json"
 	"net/http"
 )
 
-func SendPayload(payload string, imageurl string) error {
+func SendPayload(w http.ResponseWriter, movie Movie) error {
 
 	var attachment [1]interface{}
-	img := map[string]string{"fallback": "Poster", "image_url": imageurl}
+	img := map[string]string{"fallback": "Poster", "image_url": movie.Poster}
 	attachment[0] = img
-	val := map[string]interface{}{"text": payload, "attachments": attachment}
+	text := "Title: " + movie.Title + "\nGenre: " + movie.Genre + "\nReleased: " + movie.Released +
+		"\nDirector: " + movie.Director + "\nRuntime: " + movie.Runtime
+	val := map[string]interface{}{"text": text, "attachments": attachment}
 
-	jsonStr, err := json.Marshal(val)
+	err := json.NewEncoder(w).Encode(val)
+	if err != nil {
+		return err
+	}
+	/*jsonStr, err := json.Marshal(val)
 	req, err := http.NewRequest("POST", SLACKURL, bytes.NewBuffer(jsonStr))
 	req.Header.Set("Content-Type", "application/json")
 
@@ -22,6 +28,6 @@ func SendPayload(payload string, imageurl string) error {
 	if err != nil {
 		panic(err)
 	}
-	defer resp.Body.Close()
+	defer resp.Body.Close()*/
 	return nil
 }

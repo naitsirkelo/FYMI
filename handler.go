@@ -50,11 +50,13 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-
-	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
-							movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
+	SendPayload(w, movie)
+	//fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
+	//						movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
 }
 
+
+/*
 func PosterHandler(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()	//Parse the form
 	if err != nil {
@@ -78,9 +80,10 @@ func PosterHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	SendPayload(movie.Title, movie.Poster)
+//	SendPayload(movie.Title, movie.Poster)
 }
 
+*/
 func BotHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello there, friend.")
 }
