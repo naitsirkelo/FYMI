@@ -57,6 +57,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
+	fmt.Fprintf(w, "Type: %T", movie.Rating)
 	if movie.Response == "True" {	//Checks if omdb found the movie in imdb
 		err = SendPayload(w, movie) //Send info about movie as response
 		if err != nil {
