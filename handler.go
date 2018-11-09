@@ -28,13 +28,13 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, err.Error())
 		return
 	}
-	id := r.Form["text"][0]		//Gets the id from slash command
+	movie := r.Form["text"][0]			//Gets the movie variable from slack
 
 	var omdbUrl string
-	if (parts[1] == "title") {
-		omdbUrl = MakeUrlTitle(id) //Creates the url from the movie title
+	if (parts[2] == "title") {
+		omdbUrl = MakeUrlTitle(movie) //Creates the url from the movie title
 	} else {
-		omdbUrl = MakeUrlId(id)		//Creates the url from IMDB ID
+		omdbUrl = MakeUrlId(movie)		//Creates the url from IMDB ID
 	}
 
 	resp, err := http.Get(omdbUrl)	//Gets response from created omdb url
