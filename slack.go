@@ -9,7 +9,7 @@ import(
 func SendPayload(payload string, imageurl string) error {
 
 	var attachment [1]interface{}
-	img := map[string]string{"image_url": imageurl}
+	img := map[string]string{"fallback": "Poster", "image_url": imageurl}
 	attachment[0] = img
 	val := map[string]interface{}{"text": payload, "attachments": attachment}
 
