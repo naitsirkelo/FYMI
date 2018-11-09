@@ -36,7 +36,7 @@ func TitleHandler(w http.ResponseWriter, r *http.Request) {
 	var movie Movie
 	err = json.NewDecoder(resp.Body).Decode(&movie)
 	if err != nil {
-		fmt.Println(w, err.Error())
+		fmt.Fprintln(w, err.Error())
 		return
 	}
 	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \n", movie.Title, movie.Genre, movie.Released)
@@ -77,8 +77,9 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func HelpHandler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello! I am your friendly neighbourhood Movie-Info-Finding bot!")
-		fmt.Fprintln(w, "\tAvailable commands:")
-		fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>     			Example: 'tt1790809'")
-		fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>  	Example: 'The Godfather'")
+		fmt.Fprintln(w, "Hello! I am the FYMI-bot here to Find Your Movie Info for you!")
+		fmt.Fprintln(w, "These are the available commands:")
+		fmt.Fprintln(w, "\t- /fymihelp			(Show the bot functionalities)")
+		fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>	(Example: 'tt1790809')")
+		fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>	(Example: 'The Godfather')")
 }
