@@ -51,8 +51,10 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
-							movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
+	SendPayload("This is a test", movie.Poster)
+//	fmt.Fprintf(w, "Title: %v \nGenre: %v \nReleased: %v \nDirector: %v \nRuntime: %v \nPoster: %v",
+//							movie.Title, movie.Genre, movie.Released, movie.Director, movie.Runtime, movie.Poster)
+
 }
 
 // func PosterHandler(w http.ResponseWriter, r *http.Request) {
