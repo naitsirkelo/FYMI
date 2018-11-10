@@ -5,25 +5,25 @@ import(
 	"strings"
 	"net/http"
 	"encoding/json"
-
-	// "github.com/victorgama/go-unfurl"
 )
 
 type Movie struct {
-  Title    string `json="Title"`
-  Genre    string `json="Genre"`
-  Language string `json="Language"`
-  Country  string `json="Country"`
-  Runtime  string `json="Runtime"`
-  Director string `json="Director"`
-  Released string `json="Released"`
-  Poster   string `json="Poster"`
-  Response string `json="Response"`
-  Error    string `json="Error"`
-  ImdbRating   string `json="imdbRating"`
-  Type	   string `json="Type"`
-  TotalSeasons string `json="totalSeasons"`
+  Title			    string `json="Title"`
+  Genre    			string `json="Genre"`
+  Language 			string `json="Language"`
+  Country  			string `json="Country"`
+  Runtime 			string `json="Runtime"`
+  Director 			string `json="Director"`
+  Released 			string `json="Released"`
+  Poster   			string `json="Poster"`
+  Response 			string `json="Response"`
+  Error    			string `json="Error"`
+  ImdbRating   	string `json="imdbRating"`
+  Type	   			string `json="Type"`
+  TotalSeasons 	string `json="totalSeasons"`
 }
+
+// - - - - - - - - - -  Parsing Movie  - - - - - - - - - - - - - -
 
 func IdHandler(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(r.URL.Path, "/")
@@ -68,14 +68,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-
-func BotHandler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello there, friend.")
-}
-
-func RootHandler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello Internet!")
-}
+// - - - - - - - - - -  Help function  - - - - - - - - - - - - - -
 
 func HelpHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "Hello! I am the FYMI-bot here to Find Your Movie Info for you! These are the available commands:")
@@ -83,3 +76,5 @@ func HelpHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>	(Example: 'tt1790809')")
 		fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>	(Example: 'The Godfather')")
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

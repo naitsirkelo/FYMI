@@ -1,8 +1,8 @@
-# Find Your Movie Info
+# FYMI: Find Your Movie Info
 ## IMT2681 Project (Assignment 3)
-## Marius Håkonsen & Ole K Larsen
+### Marius Håkonsen & Ole K Larsen
 
-![Build Status](https://img.shields.io/badge/build-in--progress-x.svg)
+![Build Status](https://img.shields.io/badge/build-deployed-green.svg)
 
 ## Assumptions and Design choices
 
@@ -11,8 +11,9 @@ allowing for 1000 requests every 24 hours.
 
 ### Commands
 
-* /imdbtitle
-* /imdbid
+* /fymihelp
+* /fymiid    <IMDb movie id>    (Example: tt0068646)
+* /fymititle <movie title>      (Example: The Godfather)
 
 ### Tools
 * Go
@@ -21,7 +22,7 @@ allowing for 1000 requests every 24 hours.
 * MongoDB
 * OMDb API
 
-### Built With
+### Built With (Libraries)
 
 * [_BLANK_]( ) - COMMENT.
 
