@@ -8,7 +8,7 @@ import(
 )
 
 type Movie struct {
-  Title			    string `json="Title"`
+  Title			 	string `json="Title"`
   Genre    			string `json="Genre"`
   Language 			string `json="Language"`
   Country  			string `json="Country"`
@@ -18,9 +18,15 @@ type Movie struct {
   Poster   			string `json="Poster"`
   Response 			string `json="Response"`
   Error    			string `json="Error"`
-  ImdbRating   	string `json="imdbRating"`
+  ImdbRating   			string `json="imdbRating"`
   Type	   			string `json="Type"`
-  TotalSeasons 	string `json="totalSeasons"`
+  TotalSeasons 			string `json="totalSeasons"`
+}
+
+type Search struct {
+  Titles []string `json="Title"`
+  TotalResults string `json="totalResults"`
+  Response string `json="Response"`
 }
 
 // - - - - - - - - - -  Parsing Movie  - - - - - - - - - - - - - -
@@ -66,6 +72,43 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintln(w, movie.Error)
 	}
 	return
+}
+
+func TestMenu(w http.ResponseWriter, r *http.Request) {
+//        parts := strings.Split(r.URL.Path, "/")
+
+        err := r.ParseForm()    //Parse the form
+        if err != nil {
+                fmt.Fprintln(w, err.Error())
+                return
+        }
+        id := r.Form["text"][0]                 //Gets the movie variable from slack
+
+
+        var omdbUrl string
+	omdbUrl = MakeUrlSearch(id)
+
+
+        resp, err := http.Get(omdbUrl)  //Gets response from created omdb url
+        if err != nil {
+                fmt.Fprintln(w, err.Error())
+                return
+        }
+        defer resp.Body.Close()
+
+        var search Search
+        err = json.NewDecoder(resp.Body).Decode(&search) //Decode json from omdb url
+        if err != nil {
+                fmt.Fprintln(w, err.Error())
+                return
+        }
+
+	err = SendMovieMenu(w, search.Titles)
+	if err != nil {
+		fmt.Fprintln(w, err.Error())
+	}
+        return
+
 }
 
 // - - - - - - - - - -  Help function  - - - - - - - - - - - - - -

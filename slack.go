@@ -35,3 +35,27 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+func SendMovieMenu(w http.ResponseWriter, titles []string) error{
+	var attachment [1]interface{}
+	var actions [1]interface{}
+	var options []interface{}
+
+	for i:= 0; i < len(titles); i++ {
+		options[i] = map[string]string{"text": titles[i], "value": titles[i]}
+	}
+
+	actions[0] = map[string]interface{}{"name": "titles_list", "text": "Pick a movie", "type": "select", "options": options}
+
+	attachment[0] =  map[string]interface{}{"fallback": "Menu", "actions": actions}
+	text := "Several matches for that title. Please select correct from the menu."
+
+	val := map[string]interface{}{"text": text, "attachments": attachment}
+
+	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(val)	//Encode
+	if err != nil {
+		return err
+	}
+	return nil
+}

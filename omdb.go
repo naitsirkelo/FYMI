@@ -22,4 +22,10 @@ func MakeUrlTitle(title string) string {
 	return url
 }
 
+func MakeUrlSearch(title string) string {
+	replacer := strings.NewReplacer(" ", "_")
+	title = replacer.Replace(title)
+        url := OMDB + "apikey=" + APIKEY + "&s=" + title
+	return url
+}
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
