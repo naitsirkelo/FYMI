@@ -23,8 +23,13 @@ type Movie struct {
   TotalSeasons 			string `json="totalSeasons"`
 }
 
+type Titles struct {
+  Title string `json="Title"`
+  ImdbID string `json="imdbID"`
+}
+
 type Search struct {
-  Search []Movie `json="Search"`
+  Search []Titles `json="Search"`
   TotalResults string `json="totalResults"`
   Response string `json="Response"`
 }
