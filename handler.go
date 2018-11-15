@@ -24,7 +24,7 @@ type Movie struct {
 }
 
 type Search struct {
-  Movies []Movie
+  Search []Movie `json="Search"`
   TotalResults string `json="totalResults"`
   Response string `json="Response"`
 }
@@ -103,8 +103,8 @@ func TestMenu(w http.ResponseWriter, r *http.Request) {
                 return
         }
 	var titles []string
-	for i := 1; i < len(search.Movies); i++ {
-		titles[i] = search.Movies[i].Title
+	for i := 1; i < len(search.Search); i++ {
+		titles[i] = search.Search[i].Title
 	}
 	err = SendMovieMenu(w, titles)
 	if err != nil {
