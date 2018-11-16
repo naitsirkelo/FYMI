@@ -8,33 +8,33 @@ import(
 )
 
 type Movie struct {
-  Title			 	string `json="Title"`
-  Genre    			string `json="Genre"`
-  Language 			string `json="Language"`
-  Country  			string `json="Country"`
-  Runtime 			string `json="Runtime"`
-  Director 			string `json="Director"`
-  Released 			string `json="Released"`
-  Poster   			string `json="Poster"`
-  Response 			string `json="Response"`
-  Error    			string `json="Error"`
-  ImdbRating		   	string `json="imdbRating"`
-  Type	   			string `json="Type"`
-  TotalSeasons		 	string `json="totalSeasons"`
+  Title			 	string `json:"Title"`
+  Genre    			string `json:"Genre"`
+  Language 			string `json:"Language"`
+  Country  			string `json:"Country"`
+  Runtime 			string `json:"Runtime"`
+  Director 			string `json:"Director"`
+  Released 			string `json:"Released"`
+  Poster   			string `json:"Poster"`
+  Response 			string `json:"Response"`
+  Error    			string `json:"Error"`
+  ImdbRating		   	string `json:"imdbRating"`
+  Type	   			string `json:"Type"`
+  TotalSeasons		 	string `json:"totalSeasons"`
 }
 
 type MovieCompressed struct {
-  Title				string `json="Title"`
-  Year				string `json="Year"`
-  ImdbID			string `json="imdbID"`
-  Type				string `json="Type"`
-  Poster			string `json="Poster"`
+  Title				string `json:"Title"`
+  Year				string `json:"Year"`
+  ImdbID			string `json:"imdbID"`
+  Type				string `json:"Type"`
+  Poster			string `json:"Poster"`
 }
 
 type Search struct {
-  Movies 	     []MovieCompressed `json="Search"`
-  TotalResults 			string `json="totalResults"`
-  Response 			string `json="Response"`
+  Movies 	     []MovieCompressed `json:"Search"`
+  TotalResults 			string `json:"totalResults"`
+  Response 			string `json:"Response"`
 }
 
 // - - - - - - - - - -  Parsing Movie  - - - - - - - - - - - - - -
