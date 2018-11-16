@@ -23,13 +23,8 @@ type Movie struct {
   TotalSeasons 			string `json="totalSeasons"`
 }
 
-type Titles struct {
-  Title string `json="Title"`
-  ImdbID string `json="imdbID"`
-}
-
 type Search struct {
-  Search []Titles `json="Search"`
+  Movies []Movie `json="Search"`
   TotalResults string `json="totalResults"`
   Response string `json="Response"`
 }
@@ -79,7 +74,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-func TestMenu(w http.ResponseWriter, r *http.Request) {
+func SearchHandler(w http.ResponseWriter, r *http.Request) {
 //        parts := strings.Split(r.URL.Path, "/")
 
         err := r.ParseForm()    //Parse the form
@@ -108,8 +103,8 @@ func TestMenu(w http.ResponseWriter, r *http.Request) {
                 return
         }
 	var titles []string
-	for i := 1; i < len(search.Search); i++ {
-		titles[i] = search.Search[i].Title
+	for i := 1; i < len(search.Movies); i++ {
+		titles[i] = search.Movies[i].Title
 	}
 	err = SendMovieMenu(w, titles)
 	if err != nil {
