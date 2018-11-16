@@ -94,7 +94,6 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 
   var omdbUrl string
   omdbUrl = MakeUrlSearch(id)
-  fmt.Fprintln(w, omdbUrl)
   resp, err := http.Get(omdbUrl)  //Gets response from created omdb url
   if err != nil {
     fmt.Fprintln(w, err.Error())
