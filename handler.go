@@ -108,14 +108,12 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
   fmt.Fprintln(w, err.Error())
     return
   }
- // fmt.Println(len(search.Movies))
+  fmt.Fprintln(w, len(search.Movies))
 	var titles []string
 	for i := 0; i < len(search.Movies); i++ {
-		fmt.Println("hei")
-		fmt.Println(search.Movies[i].Title)
-		titles = append(titles, search.Movies[i].Title)
+		titles[i] = search.Movies[i].Title
 	}
-//	fmt.Fprintln(w, titles)
+	fmt.Fprintln(w, titles)
 	err = SendMovieMenu(w, titles)
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
