@@ -108,6 +108,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
   fmt.Fprintln(w, err.Error())
     return
   }
+  fmt.Fprintln(w, len(search.Movies))
 	var titles []string
 	for i := 0; i < len(search.Movies); i++ {
 		titles[i] = search.Movies[i].Title
