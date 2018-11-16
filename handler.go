@@ -8,7 +8,7 @@ import(
 )
 
 type Movie struct {
-  Title			 		string `json="Title"`
+  Title			 	string `json="Title"`
   Genre    			string `json="Genre"`
   Language 			string `json="Language"`
   Country  			string `json="Country"`
@@ -18,9 +18,9 @@ type Movie struct {
   Poster   			string `json="Poster"`
   Response 			string `json="Response"`
   Error    			string `json="Error"`
-  ImdbRating   	string `json="imdbRating"`
+  ImdbRating		   	string `json="imdbRating"`
   Type	   			string `json="Type"`
-  TotalSeasons 	string `json="totalSeasons"`
+  TotalSeasons		 	string `json="totalSeasons"`
 }
 
 type MovieCompressed struct {
@@ -93,8 +93,8 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
   id := r.Form["text"][0] 				//Gets the movie variable from slack
 
   var omdbUrl string
-	omdbUrl = MakeUrlSearch(id)
-
+  omdbUrl = MakeUrlSearch(id)
+  fmt.Fprintln(w, omdbUrl)
   resp, err := http.Get(omdbUrl)  //Gets response from created omdb url
   if err != nil {
     fmt.Fprintln(w, err.Error())
