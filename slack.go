@@ -62,6 +62,5 @@ func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	if err != nil {
 		return err
 	}
-//	fmt.Println(str(json.Marshal(val)))
 	return nil
 }

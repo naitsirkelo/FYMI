@@ -23,8 +23,16 @@ type Movie struct {
   TotalSeasons 			string `json="totalSeasons"`
 }
 
+type MovieCompressed struct {
+  Title				string `json="Title"`
+  Year				string `json="Year"`
+  ImdbID			string `json="imdbID"`
+  Type				string `json="Type"`
+  Poster			string `json="Poster"`
+}
+
 type Search struct {
-  Movies []Movie `json="Search"`
+  Movies []MovieCompressed `json="Search"`
   TotalResults string `json="totalResults"`
   Response string `json="Response"`
 }
@@ -106,6 +114,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
 	for i := 0; i < len(search.Movies); i++ {
 		titles[i] = search.Movies[i].Title
 	}
+	fmt.Fprintln(w, titles)
 	err = SendMovieMenu(w, titles)
 	if err != nil {
 		fmt.Fprintln(w, err.Error())
