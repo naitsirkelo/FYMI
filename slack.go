@@ -43,12 +43,12 @@ func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	var actions [1]interface{}
 	var options [1]interface{}
 
-/*	for i:= 0; i < len(titles); i++ {
+	for i:= 0; i < len(titles); i++ {
 		options[i] = map[string]string{"text": titles[i], "value": titles[i]}
 	}
-*/
 
-	options[0] = map[string]string{"text": "testText", "value": "testValue"}
+
+//	options[0] = map[string]string{"text": "testText", "value": "testValue"}
 
 	actions[0] = map[string]interface{}{"name": "titles_list", "text": "Pick a movie", "type": "select", "options": options}
 
