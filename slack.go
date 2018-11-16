@@ -3,6 +3,7 @@ package main
 import(
 	"encoding/json"
 	"net/http"
+	"fmt"
 )
 
 // - - - - - - - - - -  Send info as json  - - - - - - - - - - - - - -
@@ -39,7 +40,7 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	var attachment [1]interface{}
 	var actions [1]interface{}
-//	var options []interface{}
+//	var options []string{}
 
 /*	for i:= 0; i < len(titles); i++ {
 		options[i] = map[string]string{"text": titles[i], "value": titles[i]}
@@ -60,5 +61,6 @@ func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	if err != nil {
 		return err
 	}
+	fmt.Println(json.Marshal(val))
 	return nil
 }

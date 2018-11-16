@@ -104,7 +104,7 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
         }
 	fmt.Fprintln(w, search)
 	var titles []string
-	for i := 1; i < len(search.Movies); i++ {
+	for i := 0; i < len(search.Movies); i++ {
 		titles[i] = search.Movies[i].Title
 	}
 	err = SendMovieMenu(w, titles)
