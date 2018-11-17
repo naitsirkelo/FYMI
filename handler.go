@@ -113,11 +113,11 @@ func SearchHandler(w http.ResponseWriter, r *http.Request) {
   fmt.Fprintln(w, err.Error())
     return
   }
-  var titles []string
+  var titles []string							//Copies titles from search results to array
   for i := 0; i < len(search.Movies); i++ {
     titles = append(titles, search.Movies[i].Title)
   }
-  err = SendMovieMenu(w, titles)
+  err = SendMovieMenu(w, titles)	//Sends array of titles to list function
   if err != nil {
     fmt.Fprintln(w, err.Error())
   }
