@@ -4,7 +4,7 @@ import (
 	"strings"
 )
 
-// - - - - - - - - - -  Url with IMDb ID  - - - - - - - - - - - - - - - -
+// - - - - - - - - - -  Url with IMDb ID  - - - - - - - - - - - - - - - - -
 
 func MakeUrlId(id string) string {
 	replacer := strings.NewReplacer(" ", "")	//Necessary to remove spaces for correct error handling
@@ -13,7 +13,7 @@ func MakeUrlId(id string) string {
 	return url
 }
 
-// - - - - - - - - - -  Url with IMDb title  - - - - - - - - - - - - - -
+// - - - - - - - - - -  Url with IMDb title (first result) - - - - - - - - -
 
 func MakeUrlTitle(title string) string {
 	replacer := strings.NewReplacer(" ", "_") //Replaces spaces with underscore in title
@@ -22,10 +22,12 @@ func MakeUrlTitle(title string) string {
 	return url
 }
 
+// - - - - - - - - - -  Url with IMDb title (array of results) - - - - - - -
+
 func MakeUrlSearch(title string) string {
 	replacer := strings.NewReplacer(" ", "_")
 	title = replacer.Replace(title)
         url := OMDB + "apikey=" + APIKEY + "&s=" + title
 	return url
 }
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

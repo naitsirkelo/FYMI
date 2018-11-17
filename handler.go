@@ -7,6 +7,8 @@ import(
 	"encoding/json"
 )
 
+// - - - - - - -  Struct for ID or title request  - - - - - - - - - - -
+
 type Movie struct {
   Title			 	string `json:"Title"`
   Genre    			string `json:"Genre"`
@@ -18,26 +20,30 @@ type Movie struct {
   Poster   			string `json:"Poster"`
   Response 			string `json:"Response"`
   Error    			string `json:"Error"`
-  ImdbRating		   	string `json:"imdbRating"`
+  ImdbRating		string `json:"imdbRating"`
   Type	   			string `json:"Type"`
-  TotalSeasons		 	string `json:"totalSeasons"`
+  TotalSeasons	string `json:"totalSeasons"`
 }
+
+// - - - - - - -  Struct for a single movie result  - - - - - - - - - -
 
 type MovieCompressed struct {
-  Title				string `json:"Title"`
-  Year				string `json:"Year"`
-  ImdbID			string `json:"imdbID"`
-  Type				string `json:"Type"`
-  Poster			string `json:"Poster"`
+  Title		string `json:"Title"`
+  Year		string `json:"Year"`
+  ImdbID	string `json:"imdbID"`
+  Type		string `json:"Type"`
+  Poster	string `json:"Poster"`
 }
 
+// - - - - - - -  Storing search results  - - - - - - - - - - - - - - -
+
 type Search struct {
-  Movies 	     []MovieCompressed `json:"Search"`
-  TotalResults 			string `json:"totalResults"`
+  Movies 	     	[]MovieCompressed `json:"Search"`
+  TotalResults 	string `json:"totalResults"`
   Response 			string `json:"Response"`
 }
 
-// - - - - - - - - - -  Parsing Movie  - - - - - - - - - - - - - -
+// - - - - - - - - - -  Parsing Movie  - - - - - - - - - - - - - - - - -
 
 func IdHandler(w http.ResponseWriter, r *http.Request) {
 	parts := strings.Split(r.URL.Path, "/")
@@ -82,7 +88,7 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
-// - - - - - - - - - -  Return Movie array  - - - - - - - - - - - - - -
+// - - - - - - - - - -  Parsing Movie array  - - - - - - - - - - - - - -
 
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
   err := r.ParseForm()    				//Parse the form

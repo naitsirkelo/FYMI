@@ -1,39 +1,34 @@
 # FYMI: Find Your Movie Info
-## IMT2681 Project (Assignment 3)
-### Marius Håkonsen & Ole K Larsen
+### IMT2681 Project (Marius Håkonsen & Ole K Larsen)
 
 ![Build Status](https://img.shields.io/badge/build-deployed-green.svg)
 
-## Assumptions and Design choices
+### Overview
+The plan for the FYMI bot was to create a service that would allow the user to access useful information about an IMDb title. The service should be available straight from a smartphone without using a browser, and should only require one line of text to get the information you need.
+This feature is implemented using the Slack application with custom slash, "/", commands, usable from any phone, tablet or browser.
 
-Every call to the created API will use the same API key provided by the OMDb API structure,
-allowing for 1000 requests every 24 hours.
+### Future updates
+The application is currently only available on a private Slack channel, but will in the future be open for any Slack user to install to their channel.
 
-### Commands
+### Assumptions
+Every call to the created API will utilize the same user key provided by the OMDb API structure, which allows 1000 requests every 24 hours.
 
-* /fymihelp
-* /fymiid    <IMDb movie id>    (Example: tt0068646)
-* /fymititle <movie title>      (Example: The Godfather)
+### Usage
+###### /fymihelp
+Writes all available commands to the Slack channel.
+###### /fymiid    <IMDb movie id>    
+Returns useful info from a movie with corresponding ID. 
+(Example: tt0068646)
+###### /fymititle <IMDb movie title>     
+Gets the first resulting movie containing the title. 
+(Example: "The Godfather")
+###### /fymisearch <IMDb movie title>
+Shows a drop-down list of movies containing the title, giving the user the option to choose between the 10 first movies found.
+(Example: "Star Wars")
 
 ### Tools
-* Go
-* Heroku
-* Slack
-* MongoDB
+* Golang
 * OMDb API
+* Heroku
+* Slack 
 
-### Built With (Libraries)
-
-* [_BLANK_]( ) - COMMENT.
-
-
-<!-- Project report (Readme file)
-Each project should have a typical Readme file, together, with that additional information:
-
-brief description of the original project plan, and what has and has not been achieved/changed in the final product
-reflection of what went well and what went wrong with the project
-reflection on the hard aspects of the project
-what new has the group learned
-total work hours dedicated to the project cumulatively by the group
-
-The report should be as brief as possible, focusing on the most important aspects. -->

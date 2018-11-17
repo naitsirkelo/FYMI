@@ -3,11 +3,9 @@ package main
 import(
 	"encoding/json"
 	"net/http"
-//	"fmt"
-//	"str"
 )
 
-// - - - - - - - - - -  Send info as json  - - - - - - - - - - - - - -
+// - - - - - - - - - -  Send info as json  - - - - - - - - - - - - - - -
 
 func SendPayload(w http.ResponseWriter, movie Movie) error {
 
@@ -36,7 +34,7 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 	return nil
 }
 
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// - - - - - - - - - -  Send drop-down list  - - - - - - - - - - - - - - -
 
 func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	var attachment [1]interface{}
@@ -46,10 +44,6 @@ func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	for i:= 0; i < len(titles); i++ {
 		options = append(options, map[string]string{"text": titles[i], "value": titles[i]})
 	}
-
-
-//	options[0] = map[string]string{"text": "testText", "value": "testValue"}
-
 	actions[0] = map[string]interface{}{"name": "titles_list", "text": "Pick a movie", "type": "select", "options": options}
 
 	attachment[0] =  map[string]interface{}{"fallback": "Menu", "actions": actions}
@@ -64,3 +58,5 @@ func SendMovieMenu(w http.ResponseWriter, titles []string) error{
 	}
 	return nil
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
