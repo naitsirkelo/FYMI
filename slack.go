@@ -15,8 +15,8 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 	attachment[0] = img							//Add info to attachment array
 																	//Creating the slack response text
 	text :=
-		"Title: " + movie.Title + "\nGenre:\t" + movie.Genre + "\nReleased:\t" + movie.Released
-		 + "\nImdb Rating:\t" + movie.ImdbRating +	"\nType: " + movie.Type
+		"Title: " + movie.Title + "\nGenre:\t" + movie.Genre + "\nReleased:\t" + movie.Released +
+		"\nImdb Rating:\t" + movie.ImdbRating +	"\nType: " + movie.Type
 
 	if movie.Type == "Series" {			//Changes response if result is a series or a movie
 		text = text + "\nTotal seasons:\t" + movie.TotalSeasons
