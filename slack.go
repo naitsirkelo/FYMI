@@ -15,14 +15,13 @@ func SendPayload(w http.ResponseWriter, movie Movie) error {
 	attachment[0] = img							//Add info to attachment array
 																	//Creating the slack response text
 	text :=
-		"Title: " + movie.Title + "\nGenre: " + movie.Genre + "\nReleased: " + movie.Released +
-		"\nDirector: " + movie.Director + "\nImdb Rating: " + movie.ImdbRating +
-		"\nType: " + movie.Type
+		"Title: " + movie.Title + "\nGenre:\t" + movie.Genre + "\nReleased:\t" + movie.Released
+		 + "\nImdb Rating:\t" + movie.ImdbRating +	"\nType: " + movie.Type
 
-	if movie.Type == "series" {			//Changes response if result is a series or a movie
-		text = text + "\nTotal seasons: " + movie.TotalSeasons
-	} else if movie.Type == "movie" {
-		text = text + "\nRuntime: " + movie.Runtime
+	if movie.Type == "Series" {			//Changes response if result is a series or a movie
+		text = text + "\nTotal seasons:\t" + movie.TotalSeasons
+	} else if movie.Type == "Movie" {
+		text = text + "\nDirector:\t" + movie.Director + "\nRuntime:\t" + movie.Runtime
 	}
 																	//Prepare variables as map before encoding
 	val := map[string]interface{}{"text": text, "attachments": attachment}
