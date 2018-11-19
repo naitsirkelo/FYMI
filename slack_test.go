@@ -9,6 +9,4 @@ import (
 func Test_sendPayload(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(IdHandler))
 	defer ts.Close()
-
-
 }
