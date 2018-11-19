@@ -91,49 +91,49 @@ func IdHandler(w http.ResponseWriter, r *http.Request) {
 // - - - - - - - - - -  Parsing Movie array  - - - - - - - - - - - - - -
 
 func SearchHandler(w http.ResponseWriter, r *http.Request) {
-  err := r.ParseForm()    				//Parse the form
-  if err != nil {
-  	fmt.Fprintln(w, err.Error())
-  	return
-  }
-  id := r.Form["text"][0] 				//Gets the movie variable from slack
-
-  var omdbUrl string
-  omdbUrl = MakeUrlSearch(id)
-  resp, err := http.Get(omdbUrl)  //Gets response from created omdb url
-  if err != nil {
-    fmt.Fprintln(w, err.Error())
-    return
-  }
-  defer resp.Body.Close()
-
-  var search Search								//Decode json from omdb url
-  err = json.NewDecoder(resp.Body).Decode(&search)
+	err := r.ParseForm()    				//Parse the form
 	if err != nil {
-  fmt.Fprintln(w, err.Error())
-    return
-  }
-  var titles []string							//Copies titles from search results to array
-  for i := 0; i < len(search.Movies); i++ {
-    titles = append(titles, search.Movies[i].Title)
-  }
-  err = SendMovieMenu(w, titles)	//Sends array of titles to list function
-  if err != nil {
-    fmt.Fprintln(w, err.Error())
-  }
-  return
+  		fmt.Fprintln(w, err.Error())
+  		return
+  	}
+  	id := r.Form["text"][0] 				//Gets the movie variable from slack
+
+  	var omdbUrl string
+  	omdbUrl = MakeUrlSearch(id)
+  	resp, err := http.Get(omdbUrl)  //Gets response from created omdb url
+  	if err != nil {
+    		fmt.Fprintln(w, err.Error())
+    		return
+  	}
+  	defer resp.Body.Close()
+
+  	var search Search								//Decode json from omdb url
+  	err = json.NewDecoder(resp.Body).Decode(&search)
+	if err != nil {
+  		fmt.Fprintln(w, err.Error())
+    		return
+  	}
+  	var titles []string							//Copies titles from search results to array
+  	for i := 0; i < len(search.Movies); i++ {
+    		titles = append(titles, search.Movies[i].Title)
+  	}
+  	err = SendMovieMenu(w, titles)	//Sends array of titles to list function
+  	if err != nil {
+    		fmt.Fprintln(w, err.Error())
+  	}
+  	return
 }
 
 // - - - - - - - - - -  Help function  - - - - - - - - - - - - - -
 
 func HelpHandler(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello! I am the FYMI-bot here to Find Your Movie Info for you! These are the available commands:")
-		fmt.Fprintln(w, "\t- /fymihelp			(Show the bot functionalities)")
-		fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>	(Example: 'tt1790809')")
-		fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>")
-		fmt.Fprintln(w, "\t\t Show the first movie corresponding to the title. (Example: 'The Godfather')")
-		fmt.Fprintln(w, "\t- /fymisearch <IMDB movie title>")
-		fmt.Fprintln(w, "\t\t Shows a list of movies containing the title. (Example: 'Star Wars')")
+	fmt.Fprintln(w, "Hello! I am the FYMI-bot here to Find Your Movie Info for you! These are the available commands:")
+	fmt.Fprintln(w, "\t- /fymihelp			(Show the bot functionalities)")
+	fmt.Fprintln(w, "\t- /fymiid <IMDB movie id>	(Example: 'tt1790809')")
+	fmt.Fprintln(w, "\t- /fymititle <IMDB movie title>")
+	fmt.Fprintln(w, "\t\t Show the first movie corresponding to the title. (Example: 'The Godfather')")
+	fmt.Fprintln(w, "\t- /fymisearch <IMDB movie title>")
+	fmt.Fprintln(w, "\t\t Shows a list of movies containing the title. (Example: 'Star Wars')")
 }
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
