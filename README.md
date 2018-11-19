@@ -11,12 +11,6 @@ The plan for the FYMI bot was to create a service that would allow the user to a
 This feature is implemented using the Slack application with custom slash, "/", commands, usable from any phone, tablet or browser.
 
 
-## Future updates
-* The application is currently only available on a private Slack channel, but will in the future be open for any Slack user to install to their channel.
-* Implementation of MongoDB to allow users to see a log of previously searched titles, and create their own list of watched movies and series.
-* Allow user to specify what kind of information that will be returned to a given Slack channel.
-
-
 ## Assumptions
 Every call to the created API will utilize the same user key provided by the OMDb API structure, which allows 1000 requests every 24 hours.
 
@@ -55,3 +49,9 @@ Constructing the correct JSON structure to make sure the Slack would respond wit
 * OMDb API
 * Heroku
 * Slack
+
+
+## Future updates
+* The application is currently only available on a private Slack channel, but will in the future be open for any Slack user to install to their channel.
+* Implementation of MongoDB to allow users to see a log of previously searched titles, and create their own list of watched movies and series.
+* Allow user to specify what kind of information that will be returned to a given Slack channel.
